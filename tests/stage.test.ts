@@ -41,4 +41,16 @@ describe('Stage', () => {
     await vi.advanceTimersByTimeAsync(0)
     expect(done).toBe(true)
   })
+
+  it('same-src call during an in-flight fade resolves when that fade completes', async () => {
+    const { stage } = make()
+    void stage.showPlate('photos/a.svg')
+    const second = stage.showPlate('photos/a.svg') // mid-fade, same src
+    let done = false
+    second.then(() => { done = true })
+    await vi.advanceTimersByTimeAsync(CROSSFADE_MS - 1)
+    expect(done).toBe(false)
+    await vi.advanceTimersByTimeAsync(1)
+    expect(done).toBe(true)
+  })
 })
