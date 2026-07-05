@@ -46,7 +46,7 @@ export class PauseMenu {
       if (e.code === 'Space' && this.settings.breatheEnabled && this.el.classList.contains('hidden')) this.deps.hotspots.setBreathe(true)
     })
     window.addEventListener('keyup', e => {
-      if (e.code === 'Space' && this.settings.breatheEnabled && this.el.classList.contains('hidden')) this.deps.hotspots.setBreathe(false)
+      if (e.code === 'Space') this.deps.hotspots.setBreathe(false)
     })
   }
 

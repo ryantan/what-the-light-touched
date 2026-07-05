@@ -82,4 +82,15 @@ describe('PauseMenu', () => {
     key('keydown', 'Space')
     expect(setBreathe).toHaveBeenCalledWith(true)
   })
+
+  it('releasing Space always clears breathe, even with the menu open', () => {
+    const { stageEl, setBreathe } = setup()
+    const toggle = stageEl.querySelector<HTMLInputElement>('input[name="breathe"]')!
+    toggle.checked = true
+    toggle.dispatchEvent(new Event('change', { bubbles: true }))
+    key('keydown', 'Space')            // breathe on
+    key('keydown', 'Escape')           // open menu mid-hold
+    key('keyup', 'Space')              // release while paused
+    expect(setBreathe).toHaveBeenLastCalledWith(false)
+  })
 })
