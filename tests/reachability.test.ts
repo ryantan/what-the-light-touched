@@ -30,6 +30,24 @@ describe('simulate — tiny fixture', () => {
     const r = simulate(g)
     expect(r.errors.join()).toMatch(/f-orphan/)
   })
+
+  it('is independent of hotspot array order relative to the finale trigger', () => {
+    const g = makeTinyGame()
+    // a second fracture hotspot AFTER the finale-triggering chair in the same room
+    g.fractureIds.push('f2')
+    g.rooms[1]!.hotspots.push({
+      id: 'late-secret',
+      polygon: [[700, 300], [800, 300], [800, 400]],
+      examine: 'MARA: Nothing there.',
+      lookAgain: 'Something is there.',
+      fractureId: 'f2',
+    })
+    g.finale.minFractures = 2
+    const r = simulate(g)
+    expect(r.errors).toEqual([])
+    expect(r.endingBReachable).toBe(true)
+    expect(r.fractures.sort()).toEqual(['f1', 'f2'])
+  })
 })
 
 describe('simulate — real content', () => {

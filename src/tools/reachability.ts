@@ -10,6 +10,7 @@ export interface SimReport {
   fractures: string[]
   endingAReachable: boolean
   endingBReachable: boolean
+  fracturesAtFinale: number
   errors: string[]
 }
 
@@ -84,16 +85,27 @@ export function simulate(game: GameData): SimReport {
     }
   }
 
+  const errors: string[] = []
+  if (changed) errors.push('simulation did not reach a fixpoint within 100 passes')
+
   const allHotspots = game.rooms.flatMap(r => r.hotspots.map(h => h.id))
   const unreachable = allHotspots.filter(id => !examined.has(id))
   const collected = store.fractureIds()
   const missing = game.fractureIds.filter(id => !collected.includes(id))
-  const endingB = finaleStarted && fracturesAtFinale >= game.finale.minFractures
 
-  const errors: string[] = []
+  // startFinale gates nothing: in the real game it only hands control to the
+  // finale UI, and no content unlocks because of it. That means the player is
+  // always free to defer clicking the finale trigger until they are done
+  // exploring, so the simulation's FIXPOINT state (not the state snapshotted
+  // at the moment startFinale first fires) is exactly the best achievable
+  // pre-finale state. All completability checks below are therefore computed
+  // from the post-fixpoint store, which makes them independent of hotspot
+  // iteration order relative to the finale trigger.
+  const endingB = finaleStarted && store.fractureCount() >= game.finale.minFractures
+
   if (!finaleStarted) errors.push('Ending A unreachable: no path starts the finale')
-  if (!endingB) errors.push(`Ending B unreachable: only ${fracturesAtFinale} fractures collectible before finale (need ${game.finale.minFractures})`)
-  for (const id of missing) errors.push(`fracture ${id} is not collectible`)
+  if (!endingB) errors.push(`Ending B unreachable: only ${store.fractureCount()} fractures collectible before finale (need ${game.finale.minFractures})`)
+  for (const id of missing) errors.push(`fracture ${id} is not collectible before the finale`)
   for (const id of unreachable) errors.push(`hotspot ${id} is unreachable`)
 
   return {
@@ -103,6 +115,7 @@ export function simulate(game: GameData): SimReport {
     fractures: collected,
     endingAReachable: finaleStarted,
     endingBReachable: endingB,
+    fracturesAtFinale,
     errors,
   }
 }
