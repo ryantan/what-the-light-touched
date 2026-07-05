@@ -12,3 +12,12 @@ img.plate {
   pointer-events: none;
 }
 img.plate.visible { opacity: 1; }
+svg.hotspots { position: absolute; inset: 0; z-index: 10; }
+svg.hotspots polygon {
+  fill: transparent; stroke: none; pointer-events: fill;
+  cursor: pointer;
+}
+/* Breathe mode: dim the world, faintly lift the interactive regions.
+   Diegetic framing: Mara steadying herself. */
+svg.hotspots.breathe { background: rgba(0, 0, 0, 0.55); transition: background 200ms; }
+svg.hotspots.breathe polygon { fill: rgba(255, 255, 240, 0.18); }
