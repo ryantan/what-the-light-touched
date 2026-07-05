@@ -56,6 +56,17 @@ describe('Store', () => {
     expect(restored.currentRoom()).toBe('living')
     expect(restored.plateOverride('living')).toBe('shifted')
   })
+
+  it('subscribers receive a copy, not live state', () => {
+    const s = fresh()
+    let received: any
+    s.subscribe(st => { received = st })
+    s.setFlag('a')
+    received.items.push('polaroid')
+    received.flags['b'] = true
+    expect(s.hasItem('polaroid')).toBe(false)
+    expect(s.getFlag('b')).toBe(false)
+  })
 })
 
 describe('fractureTier', () => {

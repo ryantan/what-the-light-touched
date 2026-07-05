@@ -24,7 +24,7 @@ export class Store {
 
   constructor(private state: SaveState) {}
 
-  private emit() { for (const fn of this.listeners) fn(this.state) }
+  private emit() { const snap = this.snapshot(); for (const fn of this.listeners) fn(snap) }
 
   getFlag(name: string): boolean { return this.state.flags[name] === true }
   setFlag(name: string, value = true): void { this.state.flags[name] = value; this.emit() }
