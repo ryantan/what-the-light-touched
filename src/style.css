@@ -21,3 +21,15 @@ svg.hotspots polygon {
    Diegetic framing: Mara steadying herself. */
 svg.hotspots.breathe { background: rgba(0, 0, 0, 0.55); transition: background 200ms; }
 svg.hotspots.breathe polygon { fill: rgba(255, 255, 240, 0.18); }
+.textband {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 20;
+  min-height: 96px; padding: 20px 48px 28px; box-sizing: border-box;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.82) 30%);
+  color: #e8e2d6; font-size: 22px; line-height: 1.45;
+}
+.textband.mara { font-style: italic; }
+.textband.objective {
+  font-style: normal; font-family: 'Courier New', monospace;
+  color: #cfd4d6; font-size: 19px;
+}
+.textband:empty { display: none; }
