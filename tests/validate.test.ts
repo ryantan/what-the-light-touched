@@ -49,4 +49,16 @@ describe('validateGameData', () => {
     delete g.rooms[0]!.exits[0]!.lockedText
     expect(validateGameData(g).join()).toMatch(/lockedText/i)
   })
+
+  it('rejects duplicate room ids', () => {
+    const g = makeTinyGame()
+    g.rooms[1]!.id = 'entry' as never
+    expect(validateGameData(g).join()).toMatch(/duplicate room/i)
+  })
+
+  it('rejects duplicate plate ids within a room', () => {
+    const g = makeTinyGame()
+    g.rooms[1]!.plates.push({ id: 'base', src: 'photos/living-base.svg' })
+    expect(validateGameData(g).join()).toMatch(/duplicate plate/i)
+  })
 })

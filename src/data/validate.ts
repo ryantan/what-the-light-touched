@@ -2,10 +2,30 @@ import type { Effect, GameData } from '../types'
 
 export function validateGameData(game: GameData): string[] {
   const errors: string[] = []
-  const roomIds = new Set(game.rooms.map(r => r.id))
-  const plateIds = new Map(game.rooms.map(r => [r.id, new Set(r.plates.map(p => p.id))]))
+  const roomIds = new Set<string>()
+  const plateIds = new Map<string, Set<string>>()
   const fractureIds = new Set(game.fractureIds)
   const seenHotspots = new Set<string>()
+
+  // Check for duplicate room ids
+  for (const room of game.rooms) {
+    if (roomIds.has(room.id)) {
+      errors.push(`duplicate room id ${room.id}`)
+    }
+    roomIds.add(room.id)
+  }
+
+  // Check for duplicate plate ids within each room
+  for (const room of game.rooms) {
+    const seenPlates = new Set<string>()
+    for (const plate of room.plates) {
+      if (seenPlates.has(plate.id)) {
+        errors.push(`duplicate plate id ${plate.id} in room ${room.id}`)
+      }
+      seenPlates.add(plate.id)
+    }
+    plateIds.set(room.id, seenPlates)
+  }
 
   if (!roomIds.has(game.startRoom)) errors.push(`startRoom ${game.startRoom} does not exist`)
 
