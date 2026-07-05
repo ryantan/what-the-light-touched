@@ -35,6 +35,7 @@ export class AudioManager {
     const osc = this.ctx.createOscillator()
     osc.type = 'sine'
     osc.frequency.value = ROOM_FREQ[room]
+    this.applyDetune(osc)
     const g = this.ctx.createGain()
     g.gain.value = 0.05
     osc.connect(g)
@@ -45,9 +46,7 @@ export class AudioManager {
 
   setDetuneTier(tier: 0 | 1 | 2 | 3): void {
     this.detune = DETUNE[tier]
-    // OscillatorNode has no playbackRate in the DOM types; the placeholder synth
-    // fakes one so the real AudioBufferSourceNode loop is a drop-in later.
-    if (this.toneOsc) (this.toneOsc as any).playbackRate.value = this.detune
+    if (this.toneOsc) this.applyDetune(this.toneOsc)
   }
 
   enterSilence(): void { this.silenced = true; this.applyGain() }
@@ -65,6 +64,14 @@ export class AudioManager {
     g.connect(this.master)
     osc.start()
     osc.stop((this.ctx.currentTime ?? 0) + 0.3)
+  }
+
+  /** Placeholder synth: stub/test oscillators expose a fake playbackRate; real
+   *  OscillatorNodes don't, so fall back to the detune AudioParam (cents). */
+  private applyDetune(node: OscillatorNode): void {
+    const pr = (node as any).playbackRate
+    if (pr && typeof pr.value === 'number') pr.value = this.detune
+    else if (node.detune) node.detune.value = 1200 * Math.log2(this.detune)
   }
 
   private applyGain(): void {
