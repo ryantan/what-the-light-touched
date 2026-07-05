@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "validate": "tsx tools/validate.ts",
-    "check": "npm run typecheck && npm run test && npm run validate"
+    "check": "npm run typecheck && npm run test && npm run validate",
+    "release": "npm run check && npm run build && cd dist && zip -r ../release.zip . && cd .. && du -sh release.zip"
   },
   "devDependencies": {
     "@types/node": "^26.1.0",
