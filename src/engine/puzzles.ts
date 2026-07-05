@@ -20,12 +20,17 @@ export class PuzzleWatcher {
     if (this.checking) return // effects mutate the store; don't recurse
     this.checking = true
     try {
-      for (const p of this.puzzles) {
-        const solvedFlag = `solved:${p.id}`
-        if (this.store.getFlag(solvedFlag)) continue
-        if (p.requiresFlags.every(f => this.store.getFlag(f))) {
-          this.store.setFlag(solvedFlag)
-          runEffects(p.onSolve, this.ctx)
+      let solvedAny = true
+      while (solvedAny) {
+        solvedAny = false
+        for (const p of this.puzzles) {
+          const solvedFlag = `solved:${p.id}`
+          if (this.store.getFlag(solvedFlag)) continue
+          if (p.requiresFlags.every(f => this.store.getFlag(f))) {
+            this.store.setFlag(solvedFlag)
+            runEffects(p.onSolve, this.ctx)
+            solvedAny = true
+          }
         }
       }
     } finally {

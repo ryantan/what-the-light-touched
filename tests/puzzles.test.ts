@@ -60,4 +60,21 @@ describe('PuzzleWatcher', () => {
     new PuzzleWatcher(store, [kitchenPuzzle], ctx).start()
     expect(store.getFlag('kitchenSolved')).toBe(true)
   })
+
+  it('solves chained puzzles regardless of array order', () => {
+    const store = new Store(makeInitialState('kitchen'))
+    const puzzleB: PuzzleRule = {
+      id: 'b', requiresFlags: ['aSolved'], onSolve: [{ kind: 'setFlag', name: 'bDone' }],
+    }
+    const puzzleA: PuzzleRule = {
+      id: 'a', requiresFlags: ['trigger'], onSolve: [{ kind: 'setFlag', name: 'aSolved' }],
+    }
+    const ctx: EffectContext = {
+      store, goToRoom: vi.fn(), setPlate: vi.fn(), playSting: vi.fn(),
+      registerFracture: vi.fn(), startFinale: vi.fn(),
+    }
+    new PuzzleWatcher(store, [puzzleB, puzzleA], ctx).start() // B before A
+    store.setFlag('trigger')
+    expect(store.getFlag('bDone')).toBe(true)
+  })
 })
