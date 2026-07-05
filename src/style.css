@@ -1,10 +1,15 @@
 html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
-#frame { position: fixed; inset: 0; display: grid; place-items: center; }
+#frame {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  opacity: 0; animation: frame-fade-in 800ms ease forwards;
+}
+@keyframes frame-fade-in { to { opacity: 1; } }
 #stage {
   position: relative; background: #101010; overflow: hidden;
   transform-origin: center center;
   font-family: Georgia, 'Times New Roman', serif;
   user-select: none;
+  cursor: default;
 }
 img.plate {
   position: absolute; inset: 0; width: 1280px; height: 720px;

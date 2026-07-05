@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720">
+  <rect width="1280" height="720" fill="#1c1a17"/>
+  <text x="640" y="360" fill="#7d7468" font-size="40" text-anchor="middle"
+        font-family="Georgia">POLAROID — two shadows</text>
+  <text x="640" y="410" fill="#55504a" font-size="18" text-anchor="middle"
+        font-family="Georgia">placeholder plate — replace with photo</text>
+</svg>
