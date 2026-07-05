@@ -66,7 +66,17 @@ export function decodeSaveCode(code: string): SaveState | null {
   try {
     const parsed = JSON.parse(decodeURIComponent(escape(atob(code))))
     if (!parsed || typeof parsed !== 'object') return null
-    if (!('flags' in parsed) || !('fractures' in parsed) || !('currentRoom' in parsed)) return null
+
+    // Validate all required fields are present
+    if (!('flags' in parsed) || !('fractures' in parsed) || !('items' in parsed) || !('currentRoom' in parsed) || !('plateOverrides' in parsed)) return null
+
+    // Validate field types
+    if (typeof parsed.flags !== 'object' || Array.isArray(parsed.flags) || parsed.flags === null) return null
+    if (!Array.isArray(parsed.fractures)) return null
+    if (!Array.isArray(parsed.items)) return null
+    if (typeof parsed.currentRoom !== 'string') return null
+    if (typeof parsed.plateOverrides !== 'object' || Array.isArray(parsed.plateOverrides) || parsed.plateOverrides === null) return null
+
     return parsed as SaveState
   } catch {
     return null

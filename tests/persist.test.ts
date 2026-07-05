@@ -29,4 +29,14 @@ describe('persistence', () => {
     const a = await pickAdapter()
     expect(a).toBeInstanceOf(MemoryAdapter)
   })
+
+  it('decodeSaveCode rejects codes missing required fields', () => {
+    const partial = { flags: {}, fractures: [], currentRoom: 'entry' } // no items/plateOverrides
+    expect(decodeSaveCode(btoa(JSON.stringify(partial)))).toBeNull()
+  })
+
+  it('decodeSaveCode rejects codes with wrong field types', () => {
+    const wrong = { flags: null, fractures: 'x', items: {}, currentRoom: 1, plateOverrides: [] }
+    expect(decodeSaveCode(btoa(JSON.stringify(wrong)))).toBeNull()
+  })
 })
