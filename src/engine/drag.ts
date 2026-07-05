@@ -23,18 +23,17 @@ export class NotebookDrag {
       this.dragging = true
       el.classList.add('dragging')
     })
-    const stage = this.opts.stageEl
-    stage.addEventListener('pointermove', this.onMove)
-    stage.addEventListener('pointerup', this.onUp)
-    stage.append(el)
+    window.addEventListener('pointermove', this.onMove)
+    window.addEventListener('pointerup', this.onUp)
+    this.opts.stageEl.append(el)
     this.el = el
   }
 
   hide(): void {
     this.el?.remove()
     this.el = null
-    this.opts.stageEl.removeEventListener('pointermove', this.onMove)
-    this.opts.stageEl.removeEventListener('pointerup', this.onUp)
+    window.removeEventListener('pointermove', this.onMove)
+    window.removeEventListener('pointerup', this.onUp)
   }
 
   private toStage(e: MouseEvent): Point {
