@@ -1,0 +1,23 @@
+{
+  "name": "what-the-light-touched",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx tools/validate.ts",
+    "check": "npm run typecheck && npm run test && npm run validate"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.10.6",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.3",
+    "vitest": "^4.1.9"
+  }
+}
