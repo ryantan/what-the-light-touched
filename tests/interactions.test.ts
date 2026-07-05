@@ -19,15 +19,22 @@ const lamp: Hotspot = {
   id: 'lamp', polygon: [[0, 0], [1, 0], [1, 1]],
   examine: 'MARA: Her lamp.', lookAgain: 'A lamp.',
 }
+const stingy: Hotspot = {
+  id: 'stingy', polygon: [[0, 0], [1, 0], [1, 1]],
+  examine: 'MARA: A ticking clock.', lookAgain: 'The clock has stopped.',
+  onExamine: [{ kind: 'sting', id: 'clock-examine' }],
+  onLookAgain: [{ kind: 'sting', id: 'clock-look-again' }],
+}
 
 const setup = () => {
   const store = new Store(makeInitialState('living'))
   const el = document.createElement('div')
   const textBox = new TextBox(el, { charsPerSecond: 1000 })
   const fractures = new FractureSystem(store, [])
+  const playSting = vi.fn()
   const ctx: EffectContext = {
     store,
-    goToRoom: vi.fn(), setPlate: vi.fn(), playSting: vi.fn(),
+    goToRoom: vi.fn(), setPlate: vi.fn(), playSting,
     registerFracture: id => fractures.register(id),
     startFinale: vi.fn(),
   }
@@ -38,7 +45,7 @@ const setup = () => {
     textBox, fractures, ctx,
     hooks: { onExamineShown, onLookAgainShown },
   })
-  return { store, el, textBox, controller, onExamineShown, onLookAgainShown }
+  return { store, el, textBox, controller, onExamineShown, onLookAgainShown, playSting }
 }
 
 describe('InteractionController', () => {
@@ -87,5 +94,22 @@ describe('InteractionController', () => {
     controller.handleHotspotClick(chair)
     vi.advanceTimersByTime(5000)
     expect(el.querySelector('.textband')!.textContent).toContain('Why do you keep staring')
+  })
+
+  it('on examine, the audio hook fires before any sting effect', () => {
+    const { controller, onExamineShown, playSting } = setup()
+    controller.handleHotspotClick(stingy)
+    expect(onExamineShown).toHaveBeenCalledWith(stingy)
+    expect(playSting).toHaveBeenCalledWith('clock-examine')
+    expect(onExamineShown.mock.invocationCallOrder[0]!).toBeLessThan(playSting.mock.invocationCallOrder[0]!)
+  })
+
+  it('on look again, the audio hook fires before fracture notes and any sting effect', () => {
+    const { controller, onLookAgainShown, playSting } = setup()
+    controller.handleHotspotClick(stingy)
+    controller.handleHotspotClick(stingy)
+    expect(onLookAgainShown).toHaveBeenCalledWith(stingy)
+    expect(playSting).toHaveBeenCalledWith('clock-look-again')
+    expect(onLookAgainShown.mock.invocationCallOrder[0]!).toBeLessThan(playSting.mock.invocationCallOrder[1]!)
   })
 })

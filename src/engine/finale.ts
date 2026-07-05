@@ -19,6 +19,7 @@ export class Finale {
   }
 
   async start(): Promise<void> {
+    this.deps.audio?.exitSilence()
     const { beats, accuseBeatIndex, accuseWord, minFractures } = this.deps.game.finale
     const canAccuse = this.deps.store.fractureCount() >= minFractures
     for (let i = 0; i < beats.length; i++) {

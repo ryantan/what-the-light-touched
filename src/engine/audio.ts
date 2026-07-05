@@ -22,6 +22,7 @@ export class AudioManager {
     this.master = this.ctx.createGain()
     this.master.connect(this.ctx.destination)
     this.applyGain()
+    if (this.room) this.playRoomTone(this.room)
   }
 
   state() {

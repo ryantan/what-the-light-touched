@@ -14,7 +14,21 @@ import { AudioManager } from './engine/audio'
 import { InventoryView } from './ui/inventory'
 import { PauseMenu } from './ui/menu'
 import { runEffects, type EffectContext } from './engine/effects'
-import type { Hotspot } from './types'
+import type { GameData, Hotspot } from './types'
+import type { SaveState } from './state/store'
+
+/** Discard a save that points at a room the loaded game no longer has, and
+ *  drop any plate overrides for rooms/plates that no longer exist. */
+function sanitizeSave(saved: SaveState | null, game: GameData): SaveState | null {
+  if (!saved) return null
+  if (!game.rooms.some(r => r.id === saved.currentRoom)) return makeInitialState(game.startRoom)
+  const plateOverrides: SaveState['plateOverrides'] = {}
+  for (const [roomId, plateId] of Object.entries(saved.plateOverrides)) {
+    const room = game.rooms.find(r => r.id === roomId)
+    if (room && room.plates.some(p => p.id === plateId)) plateOverrides[roomId as SaveState['currentRoom']] = plateId
+  }
+  return { ...saved, plateOverrides }
+}
 
 async function boot() {
   const root = document.getElementById('root')!
@@ -22,9 +36,11 @@ async function boot() {
   const game = await loadGame('game.json')
 
   const adapter = await pickAdapter()
-  const saved = await adapter.load()
+  const saved = sanitizeSave(await adapter.load(), game)
   const store = new Store(saved ?? makeInitialState(game.startRoom))
   const autosave = () => { void adapter.save(store.snapshot()) }
+
+  let finaleLaunched = false
 
   const stage = new Stage(stageEl)
   const textBox = new TextBox(stageEl)
@@ -45,8 +61,9 @@ async function boot() {
     playSting: id => audio.sting(id),
     registerFracture: id => fractures.register(id),
     startFinale: () => {
-      if (store.getFlag('finaleStarted')) return
-      store.setFlag('finaleStarted')
+      if (finaleLaunched) return
+      finaleLaunched = true
+      hotspots.setScene([], [], () => true)
       void import('./engine/finale').then(m => new m.Finale({ store, textBox, stage, game, audio }).start())
     },
   }

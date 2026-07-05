@@ -5,7 +5,7 @@ import { Stage } from '../src/engine/stage'
 import { Store, makeInitialState } from '../src/state/store'
 import { makeTinyGame } from './fixtures'
 
-const setup = (fractureCount: number) => {
+const setup = (fractureCount: number, audio?: { exitSilence: () => void; enterSilence: () => void }) => {
   const game = makeTinyGame() // finale.minFractures = 1, accuseWord 'certain' in beat 0
   const store = new Store(makeInitialState('living'))
   for (let i = 0; i < fractureCount; i++) store.registerFracture(`f${i + 1}`)
@@ -13,7 +13,7 @@ const setup = (fractureCount: number) => {
   document.body.append(stageEl)
   const textBox = new TextBox(stageEl, { charsPerSecond: 100000 })
   const stage = new Stage(stageEl)
-  const finale = new Finale({ store, textBox, stage, game })
+  const finale = new Finale({ store, textBox, stage, game, audio: audio as any })
   return { stageEl, finale, textBox }
 }
 
@@ -67,5 +67,17 @@ describe('Finale', () => {
     await vi.advanceTimersByTimeAsync(3000)
     expect(stageEl.querySelector('.ending-a')).toBeTruthy()
     await done
+  })
+
+  it('exits hard silence at the start, and enters it on the accusation path', async () => {
+    const audio = { exitSilence: vi.fn(), enterSilence: vi.fn() }
+    const { stageEl, finale } = setup(1, audio)
+    void finale.start()
+    expect(audio.exitSilence).toHaveBeenCalled()
+    expect(audio.enterSilence).not.toHaveBeenCalled()
+    await vi.advanceTimersByTimeAsync(1000)
+    click(stageEl.querySelector('.accuse')!)
+    await vi.advanceTimersByTimeAsync(1000)
+    expect(audio.enterSilence).toHaveBeenCalled()
   })
 })

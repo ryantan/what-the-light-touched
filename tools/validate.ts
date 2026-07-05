@@ -12,6 +12,18 @@ if (schemaErrors.length > 0) {
   process.exit(1)
 }
 
+const canonErrors: string[] = []
+if (game.fractureIds.length !== 7) canonErrors.push(`fractureIds must have length 7, got ${game.fractureIds.length}`)
+for (const shift of game.fractureShifts) {
+  if (![3, 5, 7].includes(shift.at)) canonErrors.push(`fractureShifts[].at must be one of 3, 5, 7, got ${shift.at}`)
+}
+if (game.finale.minFractures !== 5) canonErrors.push(`finale.minFractures must be 5, got ${game.finale.minFractures}`)
+if (canonErrors.length > 0) {
+  console.error('CANON ERRORS:')
+  for (const e of canonErrors) console.error('  -', e)
+  process.exit(1)
+}
+
 const r = simulate(game)
 console.log(`rooms reached:      ${r.reachedRooms.length}/${game.rooms.length}`)
 console.log(`hotspots reachable: ${r.examinedHotspots.length}`)

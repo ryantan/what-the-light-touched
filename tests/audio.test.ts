@@ -79,4 +79,24 @@ describe('AudioManager', () => {
     a.playRoomTone('living')
     expect(oscs[oscs.length - 1].playbackRate.value).toBe(0.993)
   })
+
+  it('starts the recorded room tone on init, so the first room gets ambience', () => {
+    const oscs: any[] = []
+    const stub = {
+      createGain: () => ({ gain: { value: 1, setTargetAtTime: () => {} }, connect: () => {} }),
+      createOscillator: () => {
+        const o = { type: 'sine', frequency: { value: 0 }, playbackRate: { value: 1 }, connect: () => {}, start: () => {}, stop: () => {} }
+        oscs.push(o)
+        return o
+      },
+      createBiquadFilter: () => ({ type: 'lowpass', frequency: { value: 0 }, connect: () => {} }),
+      destination: {}, currentTime: 0,
+    } as unknown as AudioContext
+    const a = new AudioManager(() => stub)
+    a.playRoomTone('entry')
+    expect(oscs.length).toBe(0)
+    a.init()
+    expect(oscs.length).toBe(1)
+    expect(oscs[0].frequency.value).toBe(55)
+  })
 })

@@ -26,16 +26,16 @@ export class InteractionController {
     const { textBox, fractures, ctx, hooks } = this.deps
     fractures.noteExamine(h)
     void textBox.showNarration(h.id, this.examineText(h))
-    runEffects(h.onExamine, ctx)
     hooks?.onExamineShown?.(h)
+    runEffects(h.onExamine, ctx)
   }
 
   private lookAgain(h: Hotspot): void {
     const { textBox, fractures, ctx, hooks } = this.deps
     textBox.showObjective(h.id, h.lookAgain)
+    hooks?.onLookAgainShown?.(h)
     fractures.noteLookAgain(h)
     runEffects(h.onLookAgain, ctx)
-    hooks?.onLookAgainShown?.(h)
   }
 
   /** Pick the highest tiered variant at or below the current fracture tier. */
