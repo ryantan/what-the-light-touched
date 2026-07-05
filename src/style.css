@@ -33,3 +33,15 @@ svg.hotspots.breathe polygon { fill: rgba(255, 255, 240, 0.18); }
   color: #cfd4d6; font-size: 19px;
 }
 .textband:empty { display: none; }
+.inventory {
+  position: absolute; top: 16px; right: 16px; z-index: 30;
+  display: flex; gap: 8px;
+}
+.inventory.hidden { display: none; }
+.inventory .slot {
+  width: 72px; height: 72px; border-radius: 4px;
+  background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e8e2d6; font-size: 11px; display: grid; place-items: center;
+  text-align: center; padding: 4px; box-sizing: border-box;
+}
+.inventory .slot.filled { border-color: rgba(255, 255, 240, 0.5); }
