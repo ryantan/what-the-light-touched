@@ -14,7 +14,9 @@ export class RoomManager {
     textBox: TextBox
     autosave: () => void
     onRoomEntered?: (room: Room) => void
-  }) {}
+  }) {
+    deps.store.subscribe(() => deps.hotspots.refresh())
+  }
 
   currentRoomData(): Room {
     const id = this.deps.store.currentRoom()

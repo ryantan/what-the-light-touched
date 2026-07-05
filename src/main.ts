@@ -43,7 +43,11 @@ async function boot() {
     },
     playSting: id => audio.sting(id),
     registerFracture: id => fractures.register(id),
-    startFinale: () => { void import('./engine/finale').then(m => new m.Finale({ store, textBox, stage, game, audio }).start()) },
+    startFinale: () => {
+      if (store.getFlag('finaleStarted')) return
+      store.setFlag('finaleStarted')
+      void import('./engine/finale').then(m => new m.Finale({ store, textBox, stage, game, audio }).start())
+    },
   }
   fractures.setContext(ctx)
 

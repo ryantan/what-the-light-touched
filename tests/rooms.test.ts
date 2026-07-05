@@ -63,4 +63,19 @@ describe('RoomManager', () => {
     await vi.advanceTimersByTimeAsync(500)
     expect(stage.currentSrc()).toContain('living-shifted.svg')
   })
+
+  it('re-evaluates hotspot visibility when the store changes', async () => {
+    const { game, store, el, rm } = setup()
+    game.rooms[1]!.hotspots.push({
+      id: 'ghost', polygon: [[0, 0], [10, 0], [10, 10]],
+      examine: 'x', lookAgain: 'y',
+      visibleWhen: [{ kind: 'flag', name: 'ghostVisible' }],
+    })
+    store.setFlag('sawMail')
+    void rm.enter('living')
+    await vi.advanceTimersByTimeAsync(500)
+    expect(el.querySelector('polygon[data-id="ghost"]')).toBeNull()
+    store.setFlag('ghostVisible')
+    expect(el.querySelector('polygon[data-id="ghost"]')).toBeTruthy()
+  })
 })
