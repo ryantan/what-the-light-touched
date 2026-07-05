@@ -7,12 +7,17 @@ export class FractureSystem {
 
   constructor(private store: Store, private shifts: FractureShift[]) {}
 
-  setContext(ctx: EffectContext): void { this.ctx = ctx }
+  setContext(ctx: EffectContext): void {
+    this.ctx = ctx
+    this.checkShifts()
+  }
 
   tier(): 0 | 1 | 2 | 3 { return fractureTier(this.store.fractureCount()) }
 
   noteExamine(h: Hotspot): void {
     this.store.setFlag(`seenExamine:${h.id}`)
+    if (!h.fractureId) return
+    if (this.store.getFlag(`seenLookAgain:${h.id}`)) this.register(h.fractureId)
   }
 
   noteLookAgain(h: Hotspot): void {

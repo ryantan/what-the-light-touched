@@ -58,4 +58,26 @@ describe('FractureSystem', () => {
     ;['f1', 'f2', 'f3'].forEach(id => fs.register(id))
     expect(fs.tier()).toBe(1)
   })
+
+  it('registers regardless of examine/look-again order', () => {
+    const { store, fs } = setup()
+    const h = hotspot('mirror', 'f1')
+    fs.noteLookAgain(h)
+    expect(store.fractureCount()).toBe(0) // only one half seen
+    fs.noteExamine(h)
+    expect(store.fractureCount()).toBe(1)
+  })
+
+  it('setContext re-checks shifts crossed before context arrived', () => {
+    const store = new Store(makeInitialState('entry'))
+    const fs = new FractureSystem(store, [{ at: 1, effects: [{ kind: 'setPlate', room: 'living', plate: 'shifted' }] }] as any)
+    fs.register('f1') // ctx not set yet
+    const setPlate = vi.fn()
+    const ctx: EffectContext = {
+      store, goToRoom: vi.fn(), setPlate, playSting: vi.fn(),
+      registerFracture: (id: string) => fs.register(id), startFinale: vi.fn(),
+    }
+    fs.setContext(ctx)
+    expect(setPlate).toHaveBeenCalledWith('living', 'shifted')
+  })
 })
