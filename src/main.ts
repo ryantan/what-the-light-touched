@@ -12,6 +12,7 @@ import { PuzzleWatcher } from './engine/puzzles'
 import { NotebookDrag } from './engine/drag'
 import { AudioManager } from './engine/audio'
 import { InventoryView } from './ui/inventory'
+import { PauseMenu } from './ui/menu'
 import { runEffects, type EffectContext } from './engine/effects'
 import type { Hotspot } from './types'
 
@@ -106,10 +107,11 @@ async function boot() {
   // Detune reacts to fracture count as it grows
   store.subscribe(() => audio.setDetuneTier(fractureTier(store.fractureCount())))
 
-  // Audio needs a user gesture; breathe mode on space (toggle wired properly in Task 19)
+  // Audio needs a user gesture
   stageEl.addEventListener('click', () => audio.init(), { once: true })
-  window.addEventListener('keydown', e => { if (e.code === 'Space') hotspots.setBreathe(true) })
-  window.addEventListener('keyup', e => { if (e.code === 'Space') hotspots.setBreathe(false) })
+
+  // Pause menu and accessibility controls
+  new PauseMenu(stageEl, { audio, textBox, hotspots })
 
   await rooms.enter(store.currentRoom())
 }

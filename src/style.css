@@ -88,3 +88,12 @@ svg.hotspots.breathe polygon { fill: rgba(255, 255, 240, 0.18); }
   position: absolute; left: 540px; top: 160px; width: 200px; height: 320px;
   z-index: 35; cursor: pointer; background: transparent;
 }
+.pause-menu {
+  position: absolute; inset: 0; z-index: 50;
+  background: rgba(0, 0, 0, 0.85); color: #e8e2d6;
+  display: grid; place-items: center;
+}
+.pause-menu.hidden { display: none; }
+.pause-menu .panel { width: 480px; display: grid; gap: 16px; font-size: 18px; }
+.pause-menu label { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.pause-menu .notes { font-size: 14px; color: #a89f92; line-height: 1.5; }
