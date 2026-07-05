@@ -43,19 +43,36 @@ export class PauseMenu {
 
     window.addEventListener('keydown', e => {
       if (e.code === 'Escape') this.el.classList.toggle('hidden')
-      if (e.code === 'Space' && this.settings.breatheEnabled) this.deps.hotspots.setBreathe(true)
+      if (e.code === 'Space' && this.settings.breatheEnabled && this.el.classList.contains('hidden')) this.deps.hotspots.setBreathe(true)
     })
     window.addEventListener('keyup', e => {
-      if (e.code === 'Space' && this.settings.breatheEnabled) this.deps.hotspots.setBreathe(false)
+      if (e.code === 'Space' && this.settings.breatheEnabled && this.el.classList.contains('hidden')) this.deps.hotspots.setBreathe(false)
     })
   }
 
   private loadSettings(): Settings {
     try {
-      return { ...DEFAULTS, ...JSON.parse(localStorage.getItem(KEY) ?? '{}') }
+      const parsed = JSON.parse(localStorage.getItem(KEY) ?? '{}')
+      return {
+        volume: this.sanitizeVolume(parsed.volume),
+        textSpeed: this.sanitizeTextSpeed(parsed.textSpeed),
+        breatheEnabled: this.sanitizeBreathe(parsed.breatheEnabled),
+      }
     } catch {
       return { ...DEFAULTS }
     }
+  }
+
+  private sanitizeVolume(v: unknown): number {
+    return typeof v === 'number' && isFinite(v) && v >= 0 && v <= 1 ? v : DEFAULTS.volume
+  }
+
+  private sanitizeTextSpeed(v: unknown): number {
+    return typeof v === 'number' && isFinite(v) && v >= 20 && v <= 80 ? v : DEFAULTS.textSpeed
+  }
+
+  private sanitizeBreathe(v: unknown): boolean {
+    return typeof v === 'boolean' ? v : DEFAULTS.breatheEnabled
   }
 
   private update(patch: Partial<Settings>): void {

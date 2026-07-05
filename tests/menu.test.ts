@@ -59,4 +59,27 @@ describe('PauseMenu', () => {
     const { audio } = setup()
     expect(audio.state().volume).toBe(0.3)
   })
+
+  it('sanitizes corrupt persisted settings to defaults', () => {
+    localStorage.setItem('wtlt-settings', JSON.stringify({ volume: 'loud', textSpeed: -5, breatheEnabled: 'yes' }))
+    const { audio, stageEl } = setup()
+    expect(audio.state().volume).toBe(1) // default
+    const speed = stageEl.querySelector<HTMLInputElement>('input[name="textSpeed"]')!
+    expect(speed.value).toBe('40') // default
+    const breathe = stageEl.querySelector<HTMLInputElement>('input[name="breathe"]')!
+    expect(breathe.checked).toBe(false) // default
+  })
+
+  it('Space does not trigger breathe while the menu is open', () => {
+    const { stageEl, setBreathe } = setup()
+    const toggle = stageEl.querySelector<HTMLInputElement>('input[name="breathe"]')!
+    toggle.checked = true
+    toggle.dispatchEvent(new Event('change', { bubbles: true }))
+    key('keydown', 'Escape') // open menu
+    key('keydown', 'Space')
+    expect(setBreathe).not.toHaveBeenCalled()
+    key('keydown', 'Escape') // close menu
+    key('keydown', 'Space')
+    expect(setBreathe).toHaveBeenCalledWith(true)
+  })
 })
