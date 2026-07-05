@@ -45,3 +45,10 @@ svg.hotspots.breathe polygon { fill: rgba(255, 255, 240, 0.18); }
   text-align: center; padding: 4px; box-sizing: border-box;
 }
 .inventory .slot.filled { border-color: rgba(255, 255, 240, 0.5); }
+.notebook {
+  position: absolute; width: 120px; height: 90px; z-index: 25;
+  background: #4a4136; border: 1px solid #6b5f4e; border-radius: 3px;
+  cursor: grab; touch-action: none;
+  color: #cbbfa8; font-size: 12px; display: grid; place-items: center;
+}
+.notebook.dragging { cursor: grabbing; opacity: 0.9; }
