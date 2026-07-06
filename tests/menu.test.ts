@@ -41,17 +41,18 @@ describe('PauseMenu', () => {
     expect(JSON.parse(localStorage.getItem('wtlt-settings')!).volume).toBe(0.5)
   })
 
-  it('Space engages breathe mode only when the toggle is enabled', () => {
+  it('Space engages breathe mode by default, and the toggle can disable it', () => {
     const { stageEl, setBreathe } = setup()
-    key('keydown', 'Space')
-    expect(setBreathe).not.toHaveBeenCalled()
-    const toggle = stageEl.querySelector<HTMLInputElement>('input[name="breathe"]')!
-    toggle.checked = true
-    toggle.dispatchEvent(new Event('change', { bubbles: true }))
     key('keydown', 'Space')
     expect(setBreathe).toHaveBeenCalledWith(true)
     key('keyup', 'Space')
     expect(setBreathe).toHaveBeenCalledWith(false)
+    setBreathe.mockClear()
+    const toggle = stageEl.querySelector<HTMLInputElement>('input[name="breathe"]')!
+    toggle.checked = false
+    toggle.dispatchEvent(new Event('change', { bubbles: true }))
+    key('keydown', 'Space')
+    expect(setBreathe).not.toHaveBeenCalledWith(true)
   })
 
   it('restores persisted settings on construction', () => {
@@ -67,7 +68,7 @@ describe('PauseMenu', () => {
     const speed = stageEl.querySelector<HTMLInputElement>('input[name="textSpeed"]')!
     expect(speed.value).toBe('40') // default
     const breathe = stageEl.querySelector<HTMLInputElement>('input[name="breathe"]')!
-    expect(breathe.checked).toBe(false) // default
+    expect(breathe.checked).toBe(true) // default
   })
 
   it('Space does not trigger breathe while the menu is open', () => {

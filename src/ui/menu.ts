@@ -4,7 +4,7 @@ import type { HotspotLayer } from '../engine/hotspots'
 
 interface Settings { volume: number; textSpeed: number; breatheEnabled: boolean }
 const KEY = 'wtlt-settings'
-const DEFAULTS: Settings = { volume: 1, textSpeed: 40, breatheEnabled: false }
+const DEFAULTS: Settings = { volume: 1, textSpeed: 40, breatheEnabled: true }
 
 export class PauseMenu {
   private el: HTMLElement
@@ -43,7 +43,10 @@ export class PauseMenu {
 
     window.addEventListener('keydown', e => {
       if (e.code === 'Escape') this.el.classList.toggle('hidden')
-      if (e.code === 'Space' && this.settings.breatheEnabled && this.el.classList.contains('hidden')) this.deps.hotspots.setBreathe(true)
+      if (e.code === 'Space' && this.settings.breatheEnabled && this.el.classList.contains('hidden')) {
+        e.preventDefault() // Space must never scroll the letterboxed page
+        this.deps.hotspots.setBreathe(true)
+      }
     })
     window.addEventListener('keyup', e => {
       if (e.code === 'Space') this.deps.hotspots.setBreathe(false)
