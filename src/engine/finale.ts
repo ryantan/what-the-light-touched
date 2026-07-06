@@ -19,6 +19,10 @@ export class Finale {
   }
 
   async start(): Promise<void> {
+    // The doorway-view Look Again ("…You press the shutter…") is on screen
+    // when we're launched. Hold — silence included — until the player clicks,
+    // or the first beat overwrites a line nobody got to read.
+    await this.waitForAdvance()
     this.deps.audio?.exitSilence()
     const { beats, accuseBeatIndex, accuseWord, minFractures } = this.deps.game.finale
     const canAccuse = this.deps.store.fractureCount() >= minFractures

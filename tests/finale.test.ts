@@ -26,6 +26,7 @@ describe('Finale', () => {
   it('below threshold: no accuse span, ends in Ending A with the polaroid', async () => {
     const { stageEl, finale } = setup(0)
     const done = finale.start()
+    click(stageEl) // begin the beats
     await vi.advanceTimersByTimeAsync(1000)
     expect(stageEl.querySelector('.accuse')).toBeNull()
     click(stageEl) // advance past the single beat
@@ -39,6 +40,7 @@ describe('Finale', () => {
   it('at threshold: the accuse word is rendered as a clickable span', async () => {
     const { stageEl, finale } = setup(1)
     void finale.start()
+    click(stageEl) // begin the beats
     await vi.advanceTimersByTimeAsync(1000)
     const span = stageEl.querySelector('.accuse')
     expect(span?.textContent).toBe('certain')
@@ -47,6 +49,7 @@ describe('Finale', () => {
   it('clicking the accuse word triggers Ending B: corruption then the mirror', async () => {
     const { stageEl, finale } = setup(1)
     void finale.start()
+    click(stageEl) // begin the beats
     await vi.advanceTimersByTimeAsync(1000)
     click(stageEl.querySelector('.accuse')!)
     await vi.advanceTimersByTimeAsync(10000)
@@ -60,6 +63,7 @@ describe('Finale', () => {
   it('advancing without accusing at threshold still gives Ending A', async () => {
     const { stageEl, finale } = setup(1)
     const done = finale.start()
+    click(stageEl) // begin the beats
     await vi.advanceTimersByTimeAsync(1000)
     click(stageEl) // advance the beat WITHOUT clicking the word
     await vi.advanceTimersByTimeAsync(3000)
@@ -73,11 +77,31 @@ describe('Finale', () => {
     const audio = { exitSilence: vi.fn(), enterSilence: vi.fn() }
     const { stageEl, finale } = setup(1, audio)
     void finale.start()
+    expect(audio.exitSilence).not.toHaveBeenCalled() // silence holds on the shutter line
+    click(stageEl)
+    await vi.advanceTimersByTimeAsync(0) // flush the awaited click before asserting
     expect(audio.exitSilence).toHaveBeenCalled()
     expect(audio.enterSilence).not.toHaveBeenCalled()
     await vi.advanceTimersByTimeAsync(1000)
     click(stageEl.querySelector('.accuse')!)
     await vi.advanceTimersByTimeAsync(1000)
     expect(audio.enterSilence).toHaveBeenCalled()
+  })
+
+  it('holds the pre-finale text until a click, then shows the first beat', async () => {
+    const { stageEl, finale, textBox } = setup(0)
+    textBox.showObjective('doorway-view', 'You press the shutter.')
+    const done = finale.start()
+    await vi.advanceTimersByTimeAsync(2000)
+    // the Look Again line must still be on screen — not beat 1
+    expect(textBox.el.textContent).toBe('You press the shutter.')
+    click(stageEl)
+    await vi.advanceTimersByTimeAsync(1000)
+    expect(textBox.el.textContent).toContain('She was at peace here')
+    click(stageEl) // advance past the beat
+    await vi.advanceTimersByTimeAsync(3000)
+    click(stageEl) // advance past the ending-A line
+    await vi.advanceTimersByTimeAsync(3000)
+    await done
   })
 })
