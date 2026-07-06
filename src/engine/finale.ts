@@ -68,7 +68,7 @@ export class Finale {
     const credits = document.createElement('div')
     credits.className = 'ending-a'
     const img = document.createElement('img')
-    img.src = 'photos/polaroid-photo.svg'
+    img.src = 'photos/polaroid-photo.jpg'
     img.alt = ''
     credits.append(img)
     this.stageEl.append(credits)

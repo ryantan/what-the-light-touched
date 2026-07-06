@@ -21,7 +21,7 @@
     "room": "bathroom",
     "item": "notebook",
     "spawnAt": [200, 620],
-    "glowPolygon": [[820, 400], [1020, 400], [1020, 580], [820, 580]],
+    "glowPolygon": [[920, 310], [1144, 310], [1144, 544], [920, 544]],
     "revealedFlag": "readNotebook",
     "revealText": "Under the violet light, the ink comes back. Edith's hand, small and even. 'March 9th. She moved my chair to face the window again. I moved it back. I like to see the door. She says I am being morbid. I told her I am being seventy-eight. — April 2nd. I telephoned the cemetery at Colchester and asked them to check. They were kind, and confused, and they read me the name on the stone. I sat down on the kitchen floor and I did not cry. — April 30th. She did the dishes tonight, humming. Both plates. The little room's door was shut this morning. It is never shut. I counted the knives after she left the kitchen. I am not being dramatic. I counted them twice. — May 11th. I am writing this in the bath with the tap running. She is better at being Mara than Mara ever was. To whoever reads this: I knew. Put it somewhere in the world that I knew.'",
     "onRevealed": [{ "kind": "setFlag", "name": "readNotebook" }, { "kind": "sting", "id": "revealed" }]
@@ -30,74 +30,74 @@
     {
       "id": "entry",
       "name": "Entry Hall",
-      "plates": [{ "id": "base", "src": "photos/entry-base.svg" }],
+      "plates": [{ "id": "base", "src": "photos/entry-base.jpg" }],
       "hotspots": [
-        { "id": "coat-rack", "polygon": [[80,150],[220,150],[220,520],[80,520]],
+        { "id": "coat-rack", "polygon": [[165,40],[390,40],[390,420],[165,420]],
           "examine": "Her coat rack. The blue wool coat was her favourite — she wore it into June, said the cold kept her sharp. I should take that one home with me.",
           "lookAgain": "A coat rack. Four hooks, all worn. A blue wool coat on the third." },
-        { "id": "mail-pile", "polygon": [[300,480],[520,480],[520,600],[300,600]],
+        { "id": "mail-pile", "polygon": [[160,425],[375,425],[375,625],[160,625]],
           "examine": "The mail. I kept meaning to have it stopped. Bills, circulars — eleven weeks of paper from people who don't know yet. I'll write to them all, I promise.",
           "lookAgain": "A drift of unopened mail. The earliest postmark is eleven weeks old." },
-        { "id": "light-switch", "polygon": [[600,300],[650,300],[650,380],[600,380]],
+        { "id": "light-switch", "polygon": [[615,150],[680,150],[680,210],[615,210]],
           "examine": "The hall light. It buzzed when it warmed up, like something thinking. Edith wouldn't have it seen to — she said the flicker kept her company coming in.",
           "lookAgain": "A light switch. The plate has been wiped clean. The wall around it has not." },
-        { "id": "shoe-mat", "polygon": [[700,560],[950,560],[950,680],[700,680]],
+        { "id": "shoe-mat", "polygon": [[690,535],[1020,535],[1020,675],[690,675]],
           "examine": "Oh — the boots are mine. I left them here years ago and she never threw a thing away. Funny, the shapes we leave in each other's houses.",
           "lookAgain": "Two pairs of shoes, different sizes. Both have fresh mud at the heel.",
           "fractureId": "f1" }
       ],
       "exits": [
-        { "to": "living", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]] }
+        { "to": "living", "polygon": [[1020,30],[1280,30],[1280,650],[1020,650]] }
       ]
     },
     {
       "id": "living",
       "name": "Living Room",
       "plates": [
-        { "id": "base", "src": "photos/living-base.svg" },
-        { "id": "shift3", "src": "photos/living-shift3.svg" }
+        { "id": "base", "src": "photos/living-base.jpg" },
+        { "id": "shift3", "src": "photos/living-shift3.jpg" }
       ],
       "hotspots": [
-        { "id": "reading-chair", "polygon": [[420,320],[640,320],[640,560],[420,560]],
+        { "id": "reading-chair", "polygon": [[507,309],[828,309],[828,675],[507,675]],
           "examine": "Edith's reading chair. She'd sit here every night with her tea and a library mystery, right where the afternoon came in. She was so at peace in this apartment.",
           "examineTiered": [{ "tier": 1, "text": "The chair again? It's a chair, sweetheart. Old women wear out their furniture — that's all that is. Come away from there." }],
           "lookAgain": "A chair facing the wall, not the window. Deep scratches on the armrests. The floor beneath is worn through the varnish in two parallel tracks.",
           "fractureId": "f2" },
-        { "id": "chair-cushion", "polygon": [[460,400],[600,400],[600,470],[460,470]],
+        { "id": "chair-cushion", "polygon": [[549,464],[693,464],[693,539],[549,539]],
           "examine": "The cushion's gone flat as an envelope. Twenty years of the same dear weight, that's all. Leave the poor chair be — we've looked already.",
           "lookAgain": "Something rigid beneath the cushion. You lift it. A key ring — five keys.",
           "onLookAgain": [{ "kind": "addItem", "item": "keyring" }, { "kind": "sting", "id": "found" }] },
-        { "id": "floor-tracks", "polygon": [[400,570],[660,570],[660,640],[400,640]],
+        { "id": "floor-tracks", "polygon": [[446,563],[809,563],[809,720],[446,720]],
           "examine": "These floors were due refinishing when she moved in. Forty years of other people's furniture — old buildings wear their history. I find it honest.",
           "lookAgain": "Two parallel gouges, chair to wall and back. Something heavy, dragged many times. They pass beneath the chair cushion." },
-        { "id": "photo-wall", "polygon": [[700,120],[1050,120],[1050,420],[700,420]],
+        { "id": "photo-wall", "polygon": [[781,84],[1037,84],[1037,253],[781,253]],
           "examine": "The middle one — the lake house, the summer we turned the boat over. Her hair's plastered flat and she's laughing at me, because I'd sworn I could row. I'd give anything for that day back.",
           "examineTiered": [{ "tier": 1, "text": "Why do you keep counting the frames? It's a wall of a good life, that's all it is. Look at her laughing. Look at her." }],
-          "lookAgain": "Six frames, five photographs. The middle frame is empty. Its glass is clean except for four fingerprints.",
+          "lookAgain": "Six frames, five photographs. The top middle frame is empty. Its glass is clean except for four fingerprints.",
           "fractureId": "f3" },
-        { "id": "answering-machine", "polygon": [[120,480],[300,480],[300,580],[120,580]],
+        { "id": "answering-machine", "polygon": [[135,534],[265,534],[265,647],[135,647]],
           "examine": "Let's hear them, then. 'Edith, it's the pharmacy—' 'Edith, love, ring me back—' There. Doctors and busybodies. Nothing we need — I hate a machine doing the talking for her.",
           "lookAgain": "Fourteen messages. Thirteen are from the same number. All of them have been played before — recently.",
           "onExamine": [{ "kind": "setFlag", "name": "playedMachine" }] },
-        { "id": "telephone", "polygon": [[120,400],[260,400],[260,470],[120,470]],
+        { "id": "telephone", "polygon": [[23,553],[150,553],[150,720],[23,720]],
           "examine": "Her telephone. She never would get a mobile. Every Sunday at seven she'd answer on the second ring — some people you can set your week by.",
           "lookAgain": "A corded telephone. On the emergency card, a new number is written over an old one, in different ink." },
-        { "id": "tea-cup", "polygon": [[660,470],[730,470],[730,540],[660,540]],
+        { "id": "tea-cup", "polygon": [[553,422],[616,422],[616,468],[553,468]],
           "examine": "Her cup, still out on the arm of the chair. Chamomile with one sugar, always. If I close my eyes I can smell it.",
           "lookAgain": "A cup with a dried ring inside. It smells of nothing." },
-        { "id": "bookshelf", "polygon": [[60,120],[350,120],[350,380],[60,380]],
+        { "id": "bookshelf", "polygon": [[0,290],[155,290],[155,530],[0,530]],
           "examine": "Her mysteries. She'd have the murderer picked by chapter three and read on anyway, just to watch him get caught. She liked knowing how a thing ends.",
           "lookAgain": "Shelves of paperbacks. One full row is shelved backwards, spines to the wall." },
-        { "id": "window", "polygon": [[900,440],[1060,440],[1060,620],[900,620]],
+        { "id": "window", "polygon": [[1097,0],[1280,0],[1280,403],[1097,403]],
           "examine": "Her window. She liked the street better than the television — six floors of other people's lives going by. She could tell you everyone's comings and goings.",
           "lookAgain": "A sash window behind a net curtain. The curtain's hem is nailed to the sill." },
-        { "id": "last-box", "polygon": [[780,560],[900,560],[900,660],[780,660]],
+        { "id": "last-box", "polygon": [[958,553],[1145,553],[1145,720],[958,720]],
           "examine": "Nearly the last box. You've been such a help, you know. Strange work — folding a whole person into cardboard. We're almost through it, you and I.",
           "lookAgain": "A packing box, half filled. The tape gun resting on it is warm." }
       ],
       "exits": [
-        { "to": "entry", "polygon": [[0,180],[60,180],[60,620],[0,620]] },
-        { "to": "kitchen", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]],
+        { "to": "entry", "polygon": [[60,25],[200,25],[200,260],[60,260]] },
+        { "to": "kitchen", "polygon": [[1150,410],[1280,410],[1280,720],[1150,720]],
           "unlockedWhen": [{ "kind": "flag", "name": "playedMachine" }],
           "lockedText": "Not the kitchen yet — I want this room finished first. Play her messages for me, would you? Somebody besides me should hear her friends' voices." }
       ]
@@ -105,34 +105,34 @@
     {
       "id": "kitchen",
       "name": "Kitchen",
-      "plates": [{ "id": "base", "src": "photos/kitchen-base.svg" }],
+      "plates": [{ "id": "base", "src": "photos/kitchen-base.jpg" }],
       "hotspots": [
-        { "id": "calendar", "polygon": [[100,140],[320,140],[320,420],[100,420]],
+        { "id": "calendar", "polygon": [[235,100],[335,100],[335,290],[235,290]],
           "examine": "Her calendar — look. 'Mara visits,' every week, in her lovely cramped hand. Fifty-two little proofs a year that somebody came. We were close like that, she and I.",
           "lookAgain": "A wall calendar. 'Mara visits,' weekly. The entries continue six weeks past the date on the memorial card taped to the fridge.",
           "onExamine": [{ "kind": "setFlag", "name": "examined:calendar" }] },
-        { "id": "fridge", "polygon": [[360,120],[560,120],[560,620],[360,620]],
+        { "id": "fridge", "polygon": [[415,215],[605,215],[605,620],[415,620]],
           "examine": "I ought to empty the fridge before it all turns. She kept it stocked for guests to the last — you never left Edith's table hungry. I'll bring bags tomorrow.",
           "lookAgain": "Milk dated two weeks ago. Eggs, half gone. In the bin, a supermarket receipt from Tuesday.",
           "onExamine": [{ "kind": "setFlag", "name": "examined:fridge" }] },
-        { "id": "drying-rack", "polygon": [[620,380],[820,380],[820,520],[620,520]],
+        { "id": "drying-rack", "polygon": [[975,305],[1265,305],[1265,490],[975,490]],
           "examine": "One plate, one cup, washed and set to dry. She ate alone every night, poor love. That's the part I can't forgive — all those dinners for one.",
           "lookAgain": "Two plates. Two cups. Two forks. Still wet.",
           "onExamine": [{ "kind": "setFlag", "name": "examined:dishes" }] },
-        { "id": "pill-organizer", "polygon": [[860,300],[1000,300],[1000,380],[860,380]],
+        { "id": "pill-organizer", "polygon": [[1095,478],[1268,478],[1268,528],[1095,528]],
           "examine": "Her pills. Monday to Sunday, morning and evening — she ran that little box like a stationmaster. Managed all of it herself, right to the end.",
           "lookAgain": "A seven-day organizer. All fourteen lids closed. All fourteen wells full. Dust on the lids." },
-        { "id": "kettle", "polygon": [[640,280],[760,280],[760,360],[640,360]],
+        { "id": "kettle", "polygon": [[715,335],[965,335],[965,465],[715,465]],
           "examine": "The kettle, older than both of us and twice as dependable. Chamomile every evening, always chamomile. The whole kitchen used to smell of it.",
           "lookAgain": "The kettle is full and freshly descaled. The chamomile box is empty. The jar of coffee beside it is new." },
-        { "id": "junk-drawer", "polygon": [[860,440],[1040,440],[1040,540],[860,540]],
+        { "id": "junk-drawer", "polygon": [[815,515],[1085,515],[1085,690],[815,690]],
           "examine": "Every kitchen has one — string, batteries, menus for takeaways that closed years ago. Nothing worth your eyes, love. Some drawers are just where a house keeps its rubbish.",
           "lookAgain": "Beneath the menus, a notebook, warped by water. 'E.' pencilled on the cover. The ink has washed to ghosts.",
           "onLookAgain": [{ "kind": "addItem", "item": "notebook" }, { "kind": "sting", "id": "found" }] }
       ],
       "exits": [
-        { "to": "living", "polygon": [[0,180],[60,180],[60,620],[0,620]] },
-        { "to": "bathroom", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]],
+        { "to": "living", "polygon": [[0,80],[185,80],[185,700],[0,700]] },
+        { "to": "bathroom", "polygon": [[930,115],[1020,115],[1020,300],[930,300]],
           "unlockedWhen": [{ "kind": "flag", "name": "solved:kitchen-timeline" }],
           "lockedText": "Not yet — stay with me in here a moment. This room was her whole heart. Look properly, love: her calendar, her fridge, her little dishes drying. Then tell me she wasn't looked after." }
       ]
@@ -141,31 +141,31 @@
       "id": "bathroom",
       "name": "Bathroom",
       "plates": [
-        { "id": "base", "src": "photos/bathroom-base.svg" },
-        { "id": "shift5", "src": "photos/bathroom-shift5.svg" }
+        { "id": "base", "src": "photos/bathroom-base.jpg" },
+        { "id": "shift5", "src": "photos/bathroom-shift5.jpg" }
       ],
       "hotspots": [
-        { "id": "uv-nightlight", "polygon": [[840,420],[1000,420],[1000,560],[840,560]],
+        { "id": "uv-nightlight", "polygon": [[986,394],[1102,394],[1102,511],[986,511]],
           "examine": "Her violet nightlight — for her eyes, she said. It showed her what the big light couldn't: water marks, smudges on the glass. Everything honest comes out under that little glow.",
           "lookAgain": "A UV nightlight, plugged in, warm. In its glow the grout shows handprints the overhead light cannot see." },
-        { "id": "medicine-cabinet", "polygon": [[520,140],[720,140],[720,360],[520,360]],
+        { "id": "medicine-cabinet", "polygon": [[525,170],[745,170],[745,345],[525,345]],
           "examine": "Her medicine cabinet. I kept her on top of every bit of it — we'd count the pills out together on Sundays, with the radio on. She never missed a dose on my watch.",
           "examineTiered": [{ "tier": 2, "text": "You keep looking at everything twice. Edith used to do that, near the end. It wore her out, sweetheart. It would wear anyone out." }],
           "lookAgain": "Prescription bottles, unopened, seals intact. The fill dates stop eleven weeks ago.",
           "fractureId": "f6" },
-        { "id": "sink", "polygon": [[520,400],[720,400],[720,560],[520,560]],
+        { "id": "sink", "polygon": [[549,412],[735,412],[735,700],[549,700]],
           "examine": "Her sink, her one toothbrush, her lavender soap. She'd scrub her hands like a surgeon before baking. Some habits are the whole person, aren't they.",
           "lookAgain": "One toothbrush, bone dry. The soap is worn to a sliver and still slick." },
-        { "id": "towels", "polygon": [[160,300],[380,300],[380,560],[160,560]],
+        { "id": "towels", "polygon": [[214,216],[437,216],[437,525],[214,525]],
           "examine": "Fresh towels on the rail. She kept a proper home to the very end — ironed pillowcases, bleached grout. I hope somebody says as much about me one day.",
           "lookAgain": "Two towels on the rail. One is dry and stiff. The other is damp." },
-        { "id": "mirror", "polygon": [[540,60],[700,60],[700,130],[540,130]],
+        { "id": "mirror", "polygon": [[525,170],[745,170],[745,250],[525,250]],
           "examine": "Lord, I look tired. Don't look at me, sweetheart — look at the room. Edith always said this mirror made people kinder than they were. Kind glass, she called it.",
           "lookAgain": "A mirror. It shows the room behind you. The door in the reflection is open wider than the door." }
       ],
       "exits": [
-        { "to": "kitchen", "polygon": [[0,180],[60,180],[60,620],[0,620]] },
-        { "to": "bedroom", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]],
+        { "to": "kitchen", "polygon": [[0,0],[172,0],[172,720],[0,720]] },
+        { "to": "bedroom", "polygon": [[1180,120],[1280,120],[1280,660],[1180,660]],
           "unlockedWhen": [{ "kind": "hasItem", "item": "keyring" }, { "kind": "flag", "name": "readNotebook" }],
           "lockedText": "Locked, and locked it stays — I couldn't even tell you where her key got to. It's storage, sweetheart, dust and boxes. Nothing in there can tell you anything about her." }
       ]
@@ -174,32 +174,32 @@
       "id": "bedroom",
       "name": "Second Bedroom",
       "plates": [
-        { "id": "base", "src": "photos/bedroom-base.svg" },
-        { "id": "shift7", "src": "photos/bedroom-shift7.svg" }
+        { "id": "base", "src": "photos/bedroom-base.jpg" },
+        { "id": "shift7", "src": "photos/bedroom-shift7.jpg" }
       ],
       "hotspots": [
-        { "id": "bed", "polygon": [[380,320],[760,320],[760,600],[380,600]],
+        { "id": "bed", "polygon": [[330,330],[940,330],[940,660],[330,660]],
           "examine": "See? Storage. A guest bed for guests we never had — I don't think a soul has slept in it in twenty years. Sad, really. Don't dwell on it.",
           "lookAgain": "A made bed. The pillow holds the shape of a head. The sheets smell of detergent — washed this week.",
           "fractureId": "f7" },
-        { "id": "laundry", "polygon": [[820,460],[1000,460],[1000,620],[820,620]],
+        { "id": "laundry", "polygon": [[1035,455],[1260,455],[1260,700],[1035,700]],
           "examine": "Dust sheets, probably, or the old curtains. I'll sort it later — you needn't go through her laundry, of all things.",
           "lookAgain": "A basket of clean clothes, folded. None of them are Edith's style. The top shirt is inside out." },
-        { "id": "closet", "polygon": [[100,140],[320,140],[320,600],[100,600]],
+        { "id": "closet", "polygon": [[0,0],[330,0],[330,720],[0,720]],
           "examine": "More storage — I did tell you. Boxes and mothballs. You do like to be thorough, don't you, sweetheart.",
           "lookAgain": "A rail of hangers, half empty. On the floor, a sleeping bag, rolled tight. There is no dust on it." },
-        { "id": "desk", "polygon": [[820,180],[1060,180],[1060,420],[820,420]],
+        { "id": "desk", "polygon": [[915,250],[1095,250],[1095,555],[780,645],[780,555]],
           "examine": "Edith's sewing desk, from before her hands went. Pins and dress patterns and dust. Leave it, love — some things you pack without looking.",
-          "lookAgain": "A desk. In the drawer-well, a Polaroid camera. The film counter shows 1.",
+          "lookAgain": "A sewing table. On the floor in its shadow, a Polaroid camera. The film counter shows 1.",
           "onLookAgain": [{ "kind": "addItem", "item": "polaroid" }, { "kind": "sting", "id": "found" }] },
-        { "id": "doorway-view", "polygon": [[420,80],[860,80],[860,280],[420,280]],
+        { "id": "doorway-view", "polygon": [[500,45],[710,45],[710,225],[500,225]],
           "visibleWhen": [{ "kind": "hasItem", "item": "polaroid" }],
           "examine": "Take her picture, then — the room, I mean — if it helps you leave it behind. There's one shot left, so frame it kindly. Show me what you see.",
           "lookAgain": "Through the viewfinder the room is smaller. You press the shutter. The camera whirs and gives up its last photograph, blank, still developing.",
           "onLookAgain": [{ "kind": "setFlag", "name": "tookPhoto" }, { "kind": "sting", "id": "shutter" }, { "kind": "startFinale" }] }
       ],
       "exits": [
-        { "to": "bathroom", "polygon": [[0,180],[60,180],[60,620],[0,620]] }
+        { "to": "bathroom", "polygon": [[545,230],[705,230],[705,385],[545,385]] }
       ]
     }
   ],
