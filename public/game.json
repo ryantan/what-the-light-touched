@@ -23,7 +23,7 @@
     "spawnAt": [200, 620],
     "glowPolygon": [[820, 400], [1020, 400], [1020, 580], [820, 580]],
     "revealedFlag": "readNotebook",
-    "revealText": "EDITH'S HAND, UNDER THE VIOLET LIGHT: 'She came again today. I counted the knives after she left. I am not being dramatic. I counted them twice.' [PLACEHOLDER — Edith counter-narration sequence]",
+    "revealText": "Under the violet light, the ink comes back. Edith's hand, small and even. 'March 9th. She moved my chair to face the window again. I moved it back. I like to see the door. She says I am being morbid. I told her I am being seventy-eight. — April 2nd. I telephoned the cemetery at Colchester and asked them to check. They were kind, and confused, and they read me the name on the stone. I sat down on the kitchen floor and I did not cry. — April 30th. She did the dishes tonight, humming. Both plates. The little room's door was shut this morning. It is never shut. I counted the knives after she left the kitchen. I am not being dramatic. I counted them twice. — May 11th. I am writing this in the bath with the tap running. She is better at being Mara than Mara ever was. To whoever reads this: I knew. Put it somewhere in the world that I knew.'",
     "onRevealed": [{ "kind": "setFlag", "name": "readNotebook" }, { "kind": "sting", "id": "revealed" }]
   },
   "rooms": [
@@ -33,16 +33,16 @@
       "plates": [{ "id": "base", "src": "photos/entry-base.svg" }],
       "hotspots": [
         { "id": "coat-rack", "polygon": [[80,150],[220,150],[220,520],[80,520]],
-          "examine": "Her coat rack. She never owned enough coats to fill it. [PLACEHOLDER]",
-          "lookAgain": "A coat rack. Four hooks, all worn." },
+          "examine": "Her coat rack. The blue wool coat was her favourite — she wore it into June, said the cold kept her sharp. I should take that one home with me.",
+          "lookAgain": "A coat rack. Four hooks, all worn. A blue wool coat on the third." },
         { "id": "mail-pile", "polygon": [[300,480],[520,480],[520,600],[300,600]],
-          "examine": "The mail's been piling up. Bills, mostly. I should have come sooner. [PLACEHOLDER]",
-          "lookAgain": "Unopened mail. The postmarks span eleven weeks." },
+          "examine": "The mail. I kept meaning to have it stopped. Bills, circulars — eleven weeks of paper from people who don't know yet. I'll write to them all, I promise.",
+          "lookAgain": "A drift of unopened mail. The earliest postmark is eleven weeks old." },
         { "id": "light-switch", "polygon": [[600,300],[650,300],[650,380],[600,380]],
-          "examine": "The hallway light. It always flickered. Edith found it charming. [PLACEHOLDER]",
-          "lookAgain": "A light switch. The plate around it is clean; the wall is not." },
+          "examine": "The hall light. It buzzed when it warmed up, like something thinking. Edith wouldn't have it seen to — she said the flicker kept her company coming in.",
+          "lookAgain": "A light switch. The plate has been wiped clean. The wall around it has not." },
         { "id": "shoe-mat", "polygon": [[700,560],[950,560],[950,680],[700,680]],
-          "examine": "Just my old boots. I left them here years ago and she kept them. Sentimental. [PLACEHOLDER LIE]",
+          "examine": "Oh — the boots are mine. I left them here years ago and she never threw a thing away. Funny, the shapes we leave in each other's houses.",
           "lookAgain": "Two pairs of shoes, different sizes. Both have fresh mud at the heel.",
           "fractureId": "f1" }
       ],
@@ -59,47 +59,47 @@
       ],
       "hotspots": [
         { "id": "reading-chair", "polygon": [[420,320],[640,320],[640,560],[420,560]],
-          "examine": "Edith's reading chair. She'd sit here every night with her tea. She was so at peace in this apartment. [PLACEHOLDER LIE]",
-          "examineTiered": [{ "tier": 1, "text": "The chair again? It's just a chair, sweetheart. [PLACEHOLDER DEFENSIVE]" }],
+          "examine": "Edith's reading chair. She'd sit here every night with her tea and a library mystery, right where the afternoon came in. She was so at peace in this apartment.",
+          "examineTiered": [{ "tier": 1, "text": "The chair again? It's a chair, sweetheart. Old women wear out their furniture — that's all that is. Come away from there." }],
           "lookAgain": "A chair facing the wall, not the window. Deep scratches on the armrests. The floor beneath is worn through the varnish in two parallel tracks.",
           "fractureId": "f2" },
         { "id": "chair-cushion", "polygon": [[460,400],[600,400],[600,470],[460,470]],
-          "examine": "The cushion's gone flat. She really did live in this chair. [PLACEHOLDER]",
-          "lookAgain": "Something rigid under the cushion. A key ring: five keys.",
+          "examine": "The cushion's gone flat as an envelope. Twenty years of the same dear weight, that's all. Leave the poor chair be — we've looked already.",
+          "lookAgain": "Something rigid beneath the cushion. You lift it. A key ring — five keys.",
           "onLookAgain": [{ "kind": "addItem", "item": "keyring" }, { "kind": "sting", "id": "found" }] },
         { "id": "floor-tracks", "polygon": [[400,570],[660,570],[660,640],[400,640]],
-          "examine": "The floors need refinishing. Old buildings. [PLACEHOLDER — hints at cushion]",
-          "lookAgain": "Two parallel gouges run from the chair to the wall. Something heavy was dragged, many times. They pass under the chair cushion." },
+          "examine": "These floors were due refinishing when she moved in. Forty years of other people's furniture — old buildings wear their history. I find it honest.",
+          "lookAgain": "Two parallel gouges, chair to wall and back. Something heavy, dragged many times. They pass beneath the chair cushion." },
         { "id": "photo-wall", "polygon": [[700,120],[1050,120],[1050,420],[700,420]],
-          "examine": "Our photo wall. That's us at the lake house — she's laughing because I'd just dropped the thermos. God, that day. [PLACEHOLDER LIE]",
-          "examineTiered": [{ "tier": 1, "text": "You've seen the photos already. Why do you keep counting them? [PLACEHOLDER DEFENSIVE]" }],
-          "lookAgain": "Six frames. Five photographs. The sixth frame is empty; its glass is clean except for four fingerprints.",
+          "examine": "The middle one — the lake house, the summer we turned the boat over. Her hair's plastered flat and she's laughing at me, because I'd sworn I could row. I'd give anything for that day back.",
+          "examineTiered": [{ "tier": 1, "text": "Why do you keep counting the frames? It's a wall of a good life, that's all it is. Look at her laughing. Look at her." }],
+          "lookAgain": "Six frames, five photographs. The middle frame is empty. Its glass is clean except for four fingerprints.",
           "fractureId": "f3" },
         { "id": "answering-machine", "polygon": [[120,480],[300,480],[300,580],[120,580]],
-          "examine": "The answering machine, blinking away. Let's hear it... 'Edith, it's the pharmacy again—' Old messages. Nothing important. [PLACEHOLDER — plays machine]",
-          "lookAgain": "Fourteen messages. Thirteen are from the same number. The counter says they were played before, all of them, recently.",
+          "examine": "Let's hear them, then. 'Edith, it's the pharmacy—' 'Edith, love, ring me back—' There. Doctors and busybodies. Nothing we need — I hate a machine doing the talking for her.",
+          "lookAgain": "Fourteen messages. Thirteen are from the same number. All of them have been played before — recently.",
           "onExamine": [{ "kind": "setFlag", "name": "playedMachine" }] },
         { "id": "telephone", "polygon": [[120,400],[260,400],[260,470],[120,470]],
-          "examine": "Her old phone. She refused a mobile. I called every Sunday. [PLACEHOLDER]",
-          "lookAgain": "A corded phone. The emergency numbers card beside it has a new number written over an old one, in different ink." },
+          "examine": "Her telephone. She never would get a mobile. Every Sunday at seven she'd answer on the second ring — some people you can set your week by.",
+          "lookAgain": "A corded telephone. On the emergency card, a new number is written over an old one, in different ink." },
         { "id": "tea-cup", "polygon": [[660,470],[730,470],[730,540],[660,540]],
-          "examine": "Her teacup, still out. Chamomile, always. I can almost smell it. [PLACEHOLDER]",
+          "examine": "Her cup, still out on the arm of the chair. Chamomile with one sugar, always. If I close my eyes I can smell it.",
           "lookAgain": "A cup with a dried ring inside. It smells of nothing." },
         { "id": "bookshelf", "polygon": [[60,120],[350,120],[350,380],[60,380]],
-          "examine": "Her books. Mysteries, mostly. She always guessed the ending by chapter three. [PLACEHOLDER]",
-          "lookAgain": "The mysteries are shelved spine-in for one full row. Someone did not want those titles read." },
+          "examine": "Her mysteries. She'd have the murderer picked by chapter three and read on anyway, just to watch him get caught. She liked knowing how a thing ends.",
+          "lookAgain": "Shelves of paperbacks. One full row is shelved backwards, spines to the wall." },
         { "id": "window", "polygon": [[900,440],[1060,440],[1060,620],[900,620]],
-          "examine": "The window she loved. South light all afternoon. [PLACEHOLDER]",
-          "lookAgain": "The curtain hem is nailed to the sill." },
+          "examine": "Her window. She liked the street better than the television — six floors of other people's lives going by. She could tell you everyone's comings and goings.",
+          "lookAgain": "A sash window behind a net curtain. The curtain's hem is nailed to the sill." },
         { "id": "last-box", "polygon": [[780,560],[900,560],[900,660],[780,660]],
-          "examine": "The packing boxes. We're nearly done, you and I. [PLACEHOLDER]",
-          "lookAgain": "A packing box, half-filled. The tape gun is warm." }
+          "examine": "Nearly the last box. You've been such a help, you know. Strange work — folding a whole person into cardboard. We're almost through it, you and I.",
+          "lookAgain": "A packing box, half filled. The tape gun resting on it is warm." }
       ],
       "exits": [
         { "to": "entry", "polygon": [[0,180],[60,180],[60,620],[0,620]] },
         { "to": "kitchen", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]],
           "unlockedWhen": [{ "kind": "flag", "name": "playedMachine" }],
-          "lockedText": "The kitchen can wait. I want to finish in here first. Play her messages — you should hear her friends' voices. [PLACEHOLDER LOCK]" }
+          "lockedText": "Not the kitchen yet — I want this room finished first. Play her messages for me, would you? Somebody besides me should hear her friends' voices." }
       ]
     },
     {
@@ -108,33 +108,33 @@
       "plates": [{ "id": "base", "src": "photos/kitchen-base.svg" }],
       "hotspots": [
         { "id": "calendar", "polygon": [[100,140],[320,140],[320,420],[100,420]],
-          "examine": "Her wall calendar. Look — 'Mara visits' every single week, in her handwriting. We were close like that. [PLACEHOLDER LIE — puzzle 1/3]",
-          "lookAgain": "A calendar in two hands. The 'Mara visits' entries continue for six weeks past the date on the memorial card taped to the fridge.",
+          "examine": "Her calendar — look. 'Mara visits,' every week, in her lovely cramped hand. Fifty-two little proofs a year that somebody came. We were close like that, she and I.",
+          "lookAgain": "A wall calendar. 'Mara visits,' weekly. The entries continue six weeks past the date on the memorial card taped to the fridge.",
           "onExamine": [{ "kind": "setFlag", "name": "examined:calendar" }] },
         { "id": "fridge", "polygon": [[360,120],[560,120],[560,620],[360,620]],
-          "examine": "I should empty the fridge before it turns. She always kept it stocked for guests. [PLACEHOLDER — puzzle 2/3]",
-          "lookAgain": "Milk dated two weeks ago. Eggs, half gone. Someone has been shopping. Someone has been eating.",
+          "examine": "I ought to empty the fridge before it all turns. She kept it stocked for guests to the last — you never left Edith's table hungry. I'll bring bags tomorrow.",
+          "lookAgain": "Milk dated two weeks ago. Eggs, half gone. In the bin, a supermarket receipt from Tuesday.",
           "onExamine": [{ "kind": "setFlag", "name": "examined:fridge" }] },
         { "id": "drying-rack", "polygon": [[620,380],[820,380],[820,520],[620,520]],
-          "examine": "One plate, one cup — she ate alone, poor thing. I hate that she ate alone. [PLACEHOLDER LIE — puzzle 3/3]",
-          "lookAgain": "Two plates. Two cups. Two forks, still wet.",
+          "examine": "One plate, one cup, washed and set to dry. She ate alone every night, poor love. That's the part I can't forgive — all those dinners for one.",
+          "lookAgain": "Two plates. Two cups. Two forks. Still wet.",
           "onExamine": [{ "kind": "setFlag", "name": "examined:dishes" }] },
         { "id": "pill-organizer", "polygon": [[860,300],[1000,300],[1000,380],[860,380]],
-          "examine": "Her pills. The doctors kept changing the dosage. She managed it all herself, so organized. [PLACEHOLDER]",
-          "lookAgain": "A seven-day organizer, all fourteen lids closed, all fourteen wells full. Dust on the Monday lid." },
+          "examine": "Her pills. Monday to Sunday, morning and evening — she ran that little box like a stationmaster. Managed all of it herself, right to the end.",
+          "lookAgain": "A seven-day organizer. All fourteen lids closed. All fourteen wells full. Dust on the lids." },
         { "id": "kettle", "polygon": [[640,280],[760,280],[760,360],[640,360]],
-          "examine": "The kettle. Chamomile, always chamomile. [PLACEHOLDER]",
-          "lookAgain": "The kettle is descaled and full. The chamomile box is empty; the coffee jar beside it is new." },
+          "examine": "The kettle, older than both of us and twice as dependable. Chamomile every evening, always chamomile. The whole kitchen used to smell of it.",
+          "lookAgain": "The kettle is full and freshly descaled. The chamomile box is empty. The jar of coffee beside it is new." },
         { "id": "junk-drawer", "polygon": [[860,440],[1040,440],[1040,540],[860,540]],
-          "examine": "Every kitchen has one drawer like this. Batteries, string, takeaway menus. Nothing worth keeping. [PLACEHOLDER — notebook found here]",
-          "lookAgain": "Under the menus: a notebook, warped by water. The cover says E. in pencil. Most pages are illegible — the ink only ghosts.",
+          "examine": "Every kitchen has one — string, batteries, menus for takeaways that closed years ago. Nothing worth your eyes, love. Some drawers are just where a house keeps its rubbish.",
+          "lookAgain": "Beneath the menus, a notebook, warped by water. 'E.' pencilled on the cover. The ink has washed to ghosts.",
           "onLookAgain": [{ "kind": "addItem", "item": "notebook" }, { "kind": "sting", "id": "found" }] }
       ],
       "exits": [
         { "to": "living", "polygon": [[0,180],[60,180],[60,620],[0,620]] },
         { "to": "bathroom", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]],
           "unlockedWhen": [{ "kind": "flag", "name": "solved:kitchen-timeline" }],
-          "lockedText": "There's nothing in the bathroom but sad little bottles. Stay with me here a moment — look at her calendar, her fridge, her dishes. Help me remember her properly. [PLACEHOLDER LOCK]" }
+          "lockedText": "Not yet — stay with me in here a moment. This room was her whole heart. Look properly, love: her calendar, her fridge, her little dishes drying. Then tell me she wasn't looked after." }
       ]
     },
     {
@@ -146,28 +146,28 @@
       ],
       "hotspots": [
         { "id": "uv-nightlight", "polygon": [[840,420],[1000,420],[1000,560],[840,560]],
-          "examine": "Her little violet nightlight. For her eyes, she said. It made the whole room glow like a bruise. [PLACEHOLDER — drag target]",
-          "lookAgain": "A UV nightlight, plugged in, warm. Under its glow, the grout shows handprints the overhead light cannot see." },
+          "examine": "Her violet nightlight — for her eyes, she said. It showed her what the big light couldn't: water marks, smudges on the glass. Everything honest comes out under that little glow.",
+          "lookAgain": "A UV nightlight, plugged in, warm. In its glow the grout shows handprints the overhead light cannot see." },
         { "id": "medicine-cabinet", "polygon": [[520,140],[720,140],[720,360],[520,360]],
-          "examine": "Her medicine cabinet. She was on top of all of it — I made sure. I'd count the pills with her on Sundays. [PLACEHOLDER LIE]",
-          "examineTiered": [{ "tier": 2, "text": "You keep looking at everything twice. Edith used to do that. [PLACEHOLDER META]" }],
+          "examine": "Her medicine cabinet. I kept her on top of every bit of it — we'd count the pills out together on Sundays, with the radio on. She never missed a dose on my watch.",
+          "examineTiered": [{ "tier": 2, "text": "You keep looking at everything twice. Edith used to do that, near the end. It wore her out, sweetheart. It would wear anyone out." }],
           "lookAgain": "Prescription bottles, unopened, seals intact. The fill dates stop eleven weeks ago.",
           "fractureId": "f6" },
         { "id": "sink", "polygon": [[520,400],[720,400],[720,560],[520,560]],
-          "examine": "Her sink. One toothbrush, see? Just hers. [PLACEHOLDER]",
-          "lookAgain": "One toothbrush, bone dry. The soap bar is worn to a sliver and still slick." },
+          "examine": "Her sink, her one toothbrush, her lavender soap. She'd scrub her hands like a surgeon before baking. Some habits are the whole person, aren't they.",
+          "lookAgain": "One toothbrush, bone dry. The soap is worn to a sliver and still slick." },
         { "id": "towels", "polygon": [[160,300],[380,300],[380,560],[160,560]],
-          "examine": "Fresh towels. She kept a proper home to the very end. [PLACEHOLDER]",
-          "lookAgain": "Two towels on the rail. One is damp." },
+          "examine": "Fresh towels on the rail. She kept a proper home to the very end — ironed pillowcases, bleached grout. I hope somebody says as much about me one day.",
+          "lookAgain": "Two towels on the rail. One is dry and stiff. The other is damp." },
         { "id": "mirror", "polygon": [[540,60],[700,60],[700,130],[540,130]],
-          "examine": "The mirror. I look tired. This week has been so hard. [PLACEHOLDER]",
+          "examine": "Lord, I look tired. Don't look at me, sweetheart — look at the room. Edith always said this mirror made people kinder than they were. Kind glass, she called it.",
           "lookAgain": "A mirror. It shows the room behind you. The door in the reflection is open wider than the door." }
       ],
       "exits": [
         { "to": "kitchen", "polygon": [[0,180],[60,180],[60,620],[0,620]] },
         { "to": "bedroom", "polygon": [[1080,180],[1280,180],[1280,620],[1080,620]],
           "unlockedWhen": [{ "kind": "hasItem", "item": "keyring" }, { "kind": "flag", "name": "readNotebook" }],
-          "lockedText": "That's just storage, sweetheart. Boxes and dust. There's nothing of Edith in there. [PLACEHOLDER LOCK — the biggest lie]" }
+          "lockedText": "Locked, and locked it stays — I couldn't even tell you where her key got to. It's storage, sweetheart, dust and boxes. Nothing in there can tell you anything about her." }
       ]
     },
     {
@@ -179,23 +179,23 @@
       ],
       "hotspots": [
         { "id": "bed", "polygon": [[380,320],[760,320],[760,600],[380,600]],
-          "examine": "See? Storage. That old bed is just for guests we never had. [PLACEHOLDER LIE]",
+          "examine": "See? Storage. A guest bed for guests we never had — I don't think a soul has slept in it in twenty years. Sad, really. Don't dwell on it.",
           "lookAgain": "A made bed. The pillow holds the shape of a head. The sheets smell of detergent — washed this week.",
           "fractureId": "f7" },
         { "id": "laundry", "polygon": [[820,460],[1000,460],[1000,620],[820,620]],
-          "examine": "Old dust sheets, probably. I'll sort them later. [PLACEHOLDER]",
-          "lookAgain": "A laundry basket. Folded clothes, adult-sized, none of them Edith's style. The top shirt is inside out, the way someone in a hurry undresses." },
+          "examine": "Dust sheets, probably, or the old curtains. I'll sort it later — you needn't go through her laundry, of all things.",
+          "lookAgain": "A basket of clean clothes, folded. None of them are Edith's style. The top shirt is inside out." },
         { "id": "closet", "polygon": [[100,140],[320,140],[320,600],[100,600]],
-          "examine": "Boxes. I told you — storage. [PLACEHOLDER]",
-          "lookAgain": "A rail of hangers, half empty. On the floor, a sleeping bag, rolled tight, recently used." },
+          "examine": "More storage — I did tell you. Boxes and mothballs. You do like to be thorough, don't you, sweetheart.",
+          "lookAgain": "A rail of hangers, half empty. On the floor, a sleeping bag, rolled tight. There is no dust on it." },
         { "id": "desk", "polygon": [[820,180],[1060,180],[1060,420],[820,420]],
-          "examine": "Edith's old sewing desk. She never touched it in years. [PLACEHOLDER]",
-          "lookAgain": "A desk. In the drawer-well, a Polaroid camera. The counter window shows 1.",
+          "examine": "Edith's sewing desk, from before her hands went. Pins and dress patterns and dust. Leave it, love — some things you pack without looking.",
+          "lookAgain": "A desk. In the drawer-well, a Polaroid camera. The film counter shows 1.",
           "onLookAgain": [{ "kind": "addItem", "item": "polaroid" }, { "kind": "sting", "id": "found" }] },
         { "id": "doorway-view", "polygon": [[420,80],[860,80],[860,280],[420,280]],
           "visibleWhen": [{ "kind": "hasItem", "item": "polaroid" }],
-          "examine": "Take a picture, then. If it helps you say goodbye. Use the last one. Frame it kindly. [PLACEHOLDER — takes the photo, starts finale]",
-          "lookAgain": "Through the viewfinder the room is smaller. You press the shutter. The camera whines and gives up its last photograph, blank and developing.",
+          "examine": "Take her picture, then — the room, I mean — if it helps you leave it behind. There's one shot left, so frame it kindly. Show me what you see.",
+          "lookAgain": "Through the viewfinder the room is smaller. You press the shutter. The camera whirs and gives up its last photograph, blank, still developing.",
           "onLookAgain": [{ "kind": "setFlag", "name": "tookPhoto" }, { "kind": "sting", "id": "shutter" }, { "kind": "startFinale" }] }
       ],
       "exits": [
@@ -205,24 +205,24 @@
   ],
   "finale": {
     "beats": [
-      "So now you know the whole of it. She was tired, and she was ill, and she went gently, in her own bed, in her own time. [PLACEHOLDER BEAT 1]",
-      "I visited every week. I brought her tea. I counted her pills. Nobody could have done more for her than I did. [PLACEHOLDER BEAT 2]",
-      "And I am certain — certain — that she never spent one night of her life afraid. [PLACEHOLDER BEAT 3 — accusation word lives here]"
+      "There. That's the whole of her, folded and boxed and ready to carry — the tea, the mysteries, the Sunday calls. She was tired, and she was ill, and she went gently, in her own bed, in her own good time.",
+      "And I did everything a sister could do. I visited every week — you saw the calendar. I counted out her pills on Sundays. I kept her company right to the end. Nobody could have loved her more carefully than I did.",
+      "She was not lonely, and she was not left. I am certain of this one thing — certain as my own name: my sister never spent a single night afraid."
     ],
     "accuseBeatIndex": 2,
     "accuseWord": "afraid",
     "minFractures": 5,
     "endingA": [
-      "You pack the last box. Mara thanks you for helping her say goodbye. [PLACEHOLDER]",
-      "Over the credits, the Polaroid develops. The framing is wrong. There are two shadows. [PLACEHOLDER STINGER]"
+      "That's the last of them. Thank you, sweetheart — truly — for helping me say goodbye to her. Leave the key on the mat when you go. I'll only be a minute more.",
+      "In the empty apartment, the last photograph finishes developing."
     ],
     "endingB": {
       "corrupt": [
-        ["She went gently—", "The chair faced the door."],
-        ["I visited every week—", "The calendar kept counting after she stopped."],
-        ["I am Mara. I am—", "The second bed is warm."]
+        ["She was at peace here. She'd sit with her tea and watch the—", "The chair faced the door."],
+        ["I visited every week. I was there, I was always—", "The calendar kept counting after she stopped."],
+        ["I am her sister. I am Mara. I am—", "The second bed is warm."]
       ],
-      "mirrorLookAgain": "A mirror. You look again. [PLACEHOLDER — final objective description, writing pass required. Design requirement: the only objective description the player wishes had been narration.]"
+      "mirrorLookAgain": "A mirror. A woman stands in Edith's hallway, holding Edith's keys. You wait for a voice to say her name. Nothing comes."
     }
   }
 }
