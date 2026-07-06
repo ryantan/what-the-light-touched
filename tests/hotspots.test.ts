@@ -26,6 +26,18 @@ describe('HotspotLayer', () => {
     expect(el.querySelectorAll('polygon[data-id]').length).toBe(1)
   })
 
+  it('classes exits by direction so CSS can show a directional cursor', () => {
+    const { el, layer } = setup()
+    layer.setScene([], [
+      { to: 'kitchen', polygon: [[1100, 200], [1280, 200], [1280, 600], [1100, 600]] },
+      { to: 'entry', polygon: [[0, 200], [80, 200], [80, 600], [0, 600]] },
+      { to: 'bathroom', polygon: [[545, 230], [705, 230], [705, 385], [545, 385]] },
+    ], () => true)
+    expect(el.querySelector('polygon[data-exit="kitchen"]')!.classList.contains('exit-right')).toBe(true)
+    expect(el.querySelector('polygon[data-exit="entry"]')!.classList.contains('exit-left')).toBe(true)
+    expect(el.querySelector('polygon[data-exit="bathroom"]')!.classList.contains('exit-up')).toBe(true)
+  })
+
   it('dispatches clicks to the right handler', () => {
     const { el, layer, onHotspot, onExit } = setup()
     const room = makeTinyGame().rooms[0]!

@@ -2,6 +2,15 @@ import type { Exit, Hotspot } from '../types'
 
 const SVG_NS = 'http://www.w3.org/2000/svg'
 
+/** Which way an exit leads, judged by where it sits on the 1280-wide stage.
+ *  Drives the directional cursor — the only visual affordance exits get. */
+const exitDirection = (points: [number, number][]): 'exit-left' | 'exit-right' | 'exit-up' => {
+  const cx = points.reduce((sum, p) => sum + p[0], 0) / points.length
+  if (cx < 400) return 'exit-left'
+  if (cx > 880) return 'exit-right'
+  return 'exit-up'
+}
+
 export interface HotspotHandlers {
   onHotspot(id: string): void
   onExit(to: string): void
@@ -44,7 +53,9 @@ export class HotspotLayer {
       this.svg.append(this.polygon(h.polygon, 'data-id', h.id))
     }
     for (const x of this.exits) {
-      this.svg.append(this.polygon(x.polygon, 'data-exit', x.to))
+      const poly = this.polygon(x.polygon, 'data-exit', x.to)
+      poly.classList.add(exitDirection(x.polygon))
+      this.svg.append(poly)
     }
   }
 
