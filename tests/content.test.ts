@@ -18,7 +18,9 @@ describe('public/game.json', () => {
 
   it('has ~35 hotspots and every referenced plate file exists', () => {
     const count = game.rooms.reduce((n, r) => n + r.hotspots.length, 0)
-    expect(count).toBeGreaterThanOrEqual(30)
+    // 29: the living-room `window` pair was retired when the kitchen doorway
+    // replaced the window in the photo plate (exit-visibility pass).
+    expect(count).toBeGreaterThanOrEqual(29)
     for (const room of game.rooms)
       for (const plate of room.plates)
         expect(() => readFileSync(`public/${plate.src}`)).not.toThrow()

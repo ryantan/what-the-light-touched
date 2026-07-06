@@ -88,16 +88,13 @@
         { "id": "bookshelf", "polygon": [[0,290],[155,290],[155,530],[0,530]],
           "examine": "Her mysteries. She'd have the murderer picked by chapter three and read on anyway, just to watch him get caught. She liked knowing how a thing ends.",
           "lookAgain": "Shelves of paperbacks. One full row is shelved backwards, spines to the wall." },
-        { "id": "window", "polygon": [[1097,0],[1280,0],[1280,403],[1097,403]],
-          "examine": "Her window. She liked the street better than the television — six floors of other people's lives going by. She could tell you everyone's comings and goings.",
-          "lookAgain": "A sash window behind a net curtain. The curtain's hem is nailed to the sill." },
-        { "id": "last-box", "polygon": [[958,553],[1145,553],[1145,720],[958,720]],
+        { "id": "last-box", "polygon": [[958,553],[1105,553],[1105,720],[958,720]],
           "examine": "Nearly the last box. You've been such a help, you know. Strange work — folding a whole person into cardboard. We're almost through it, you and I.",
           "lookAgain": "A packing box, half filled. The tape gun resting on it is warm." }
       ],
       "exits": [
         { "to": "entry", "polygon": [[60,25],[200,25],[200,260],[60,260]] },
-        { "to": "kitchen", "polygon": [[1150,410],[1280,410],[1280,720],[1150,720]],
+        { "to": "kitchen", "polygon": [[1110,30],[1280,30],[1280,720],[1110,720]],
           "unlockedWhen": [{ "kind": "flag", "name": "playedMachine" }],
           "lockedText": "Not the kitchen yet — I want this room finished first. Play her messages for me, would you? Somebody besides me should hear her friends' voices." }
       ]
@@ -165,7 +162,7 @@
       ],
       "exits": [
         { "to": "kitchen", "polygon": [[0,0],[172,0],[172,720],[0,720]] },
-        { "to": "bedroom", "polygon": [[1180,120],[1280,120],[1280,660],[1180,660]],
+        { "to": "bedroom", "polygon": [[1150,140],[1280,140],[1280,700],[1150,700]],
           "unlockedWhen": [{ "kind": "hasItem", "item": "keyring" }, { "kind": "flag", "name": "readNotebook" }],
           "lockedText": "Locked, and locked it stays — I couldn't even tell you where her key got to. It's storage, sweetheart, dust and boxes. Nothing in there can tell you anything about her." }
       ]
