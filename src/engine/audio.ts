@@ -13,6 +13,7 @@ export class AudioManager {
   private silenced = false
   private detune = 1
   private volume = 1
+  private pendingSting: string | null = null
 
   constructor(private ctxFactory: () => AudioContext = () => new AudioContext()) {}
 
@@ -26,7 +27,7 @@ export class AudioManager {
   }
 
   state() {
-    return { room: this.room, silenced: this.silenced, detune: this.detune, volume: this.volume }
+    return { room: this.room, silenced: this.silenced, detune: this.detune, volume: this.volume, pendingSting: this.pendingSting }
   }
 
   playRoomTone(room: RoomId): void {
@@ -51,12 +52,19 @@ export class AudioManager {
   }
 
   enterSilence(): void { this.silenced = true; this.applyGain() }
-  exitSilence(): void { this.silenced = false; this.applyGain() }
+  exitSilence(): void {
+    this.silenced = false
+    this.applyGain()
+    const queued = this.pendingSting
+    this.pendingSting = null
+    if (queued) this.sting(queued)
+  }
 
   setVolume(v: number): void { this.volume = v; this.applyGain() }
 
-  sting(_id: string): void {
-    if (!this.ctx || !this.master || this.silenced) return
+  sting(id: string): void {
+    if (!this.ctx || !this.master) return
+    if (this.silenced) { this.pendingSting = id; return }
     const osc = this.ctx.createOscillator()
     osc.frequency.value = 220
     const g = this.ctx.createGain()

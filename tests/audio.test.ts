@@ -99,4 +99,23 @@ describe('AudioManager', () => {
     expect(oscs.length).toBe(1)
     expect(oscs[0].frequency.value).toBe(55)
   })
+
+  it('queues a sting fired during silence and plays it when silence exits', () => {
+    let oscs = 0
+    const ctx = makeStubCtx()
+    const origCreate = ctx.createOscillator.bind(ctx)
+    ;(ctx as unknown as { createOscillator: () => unknown }).createOscillator =
+      () => { oscs++; return origCreate() }
+    const a = new AudioManager(() => ctx)
+    a.init()
+    a.playRoomTone('entry')
+    const base = oscs
+    a.enterSilence()
+    a.sting('found')
+    expect(oscs).toBe(base)                    // not played during silence
+    expect(a.state().pendingSting).toBe('found')
+    a.exitSilence()
+    expect(oscs).toBe(base + 1)                // plays as the silence lifts
+    expect(a.state().pendingSting).toBeNull()
+  })
 })
